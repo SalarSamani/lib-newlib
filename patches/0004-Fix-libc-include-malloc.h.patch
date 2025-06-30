@@ -1,0 +1,25 @@
+From 94b7c12d08be66d9455bae510427704d9b1f0288 Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Sun, 22 Jun 2025 05:31:10 +0200
+Subject: [PATCH 04/25] Fix libc/include/malloc.h
+
+Signed-off-by: Salar Samani <soltanisamani@gmail.com>
+---
+ newlib/libc/include/malloc.h | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/newlib/libc/include/malloc.h b/newlib/libc/include/malloc.h
+index a9dc5bc..308e4a4 100644
+--- a/newlib/libc/include/malloc.h
++++ b/newlib/libc/include/malloc.h
+@@ -170,4 +170,7 @@ extern void cfree (void *);
+ }
+ #endif
+ 
++#else /* _INCLUDE_MALLOC_H_ */
++#include_next <malloc.h>
++
+ #endif /* _INCLUDE_MALLOC_H_ */
+-- 
+2.43.0
+

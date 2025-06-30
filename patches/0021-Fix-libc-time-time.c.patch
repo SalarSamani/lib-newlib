@@ -1,0 +1,45 @@
+From 8f4010d4ffc3f1b6bc8ec4d19528ec2f7eeca48a Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Mon, 30 Jun 2025 04:59:08 +0200
+Subject: [PATCH 21/25] Fix libc/time/time.c
+
+---
+ newlib/libc/time/time.c | 22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
+
+diff --git a/newlib/libc/time/time.c b/newlib/libc/time/time.c
+index b431f7a..55335c7 100644
+--- a/newlib/libc/time/time.c
++++ b/newlib/libc/time/time.c
+@@ -32,17 +32,17 @@ Supporting OS subroutine required: Some implementations require
+ #include <sys/types.h>
+ #include <sys/time.h>
+ 
+-time_t
+-time (time_t * t)
+-{
+-  struct timeval now;
++// time_t
++// time (time_t * t)
++// {
++//   struct timeval now;
+ 
+-  now.tv_sec = (time_t) -1;
++//   now.tv_sec = (time_t) -1;
+ 
+-  if (_gettimeofday_r (_REENT, &now, NULL) < 0)
+-    now.tv_sec = (time_t) -1;
++//   if (_gettimeofday_r (_REENT, &now, NULL) < 0)
++//     now.tv_sec = (time_t) -1;
+ 
+-  if (t)
+-    *t = now.tv_sec;
+-  return now.tv_sec;
+-}
++//   if (t)
++//     *t = now.tv_sec;
++//   return now.tv_sec;
++// }
+-- 
+2.43.0
+

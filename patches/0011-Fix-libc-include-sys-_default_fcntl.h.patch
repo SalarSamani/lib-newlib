@@ -1,0 +1,52 @@
+From 3f4d65f87af871a14d0d7aa49063eab9f21807ee Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Sun, 29 Jun 2025 19:45:47 +0200
+Subject: [PATCH 11/25] Fix libc/include/sys/_default_fcntl.h
+
+---
+ newlib/libc/include/sys/_default_fcntl.h | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/newlib/libc/include/sys/_default_fcntl.h b/newlib/libc/include/sys/_default_fcntl.h
+index 2e72389..9434152 100644
+--- a/newlib/libc/include/sys/_default_fcntl.h
++++ b/newlib/libc/include/sys/_default_fcntl.h
+@@ -70,19 +70,19 @@ extern "C" {
+ 
+ /* POSIX-1.2008 specific flags */
+ #if __POSIX_VISIBLE >= 200809
+-#define	O_CLOEXEC	_FNOINHERIT
+-#define	O_NOFOLLOW	_FNOFOLLOW
+-#define	O_DIRECTORY	_FDIRECTORY
+-#define	O_EXEC		_FEXECSRCH
+-#define	O_SEARCH	_FEXECSRCH
++// #define	O_CLOEXEC	_FNOINHERIT
++// #define	O_NOFOLLOW	_FNOFOLLOW
++// #define	O_DIRECTORY	_FDIRECTORY
++// #define	O_EXEC		_FEXECSRCH
++// #define	O_SEARCH	_FEXECSRCH
+ #endif
+ 
+ #if __BSD_VISIBLE
+ #define	O_DIRECT	_FDIRECT
+ #endif
+ 
+-#define O_DSYNC         _FSYNC
+-#define O_RSYNC         _FSYNC
++// #define O_DSYNC         _FSYNC
++// #define O_RSYNC         _FSYNC
+ 
+ #if defined (__CYGWIN__)
+ #define O_BINARY	_FBINARY
+@@ -180,7 +180,7 @@ extern "C" {
+ #define AT_SYMLINK_FOLLOW          0x0004
+ #define AT_REMOVEDIR               0x0008
+ #if __GNU_VISIBLE
+-#define AT_EMPTY_PATH              0x0010
++// #define AT_EMPTY_PATH              0x0010
+ #define _AT_NULL_PATHNAME_ALLOWED  0x4000 /* Internal flag used by futimesat */
+ #endif
+ #endif
+-- 
+2.43.0
+

@@ -1,21 +1,18 @@
-From 0d8754f5b70f413b8bd6eb0c9856b2174c6b9eca Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Eduard=20Vintil=C4=83?= <eduard.vintila47@gmail.com>
-Date: Wed, 7 Dec 2022 13:44:51 +0200
-Subject: [PATCH] Fix type macro
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From bc8a41dc99533f47b36095304d718d310f05be9a Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Sun, 22 Jun 2025 07:14:04 +0200
+Subject: [PATCH 08/25] Fix libc/include/sys/_types.h
 
-Signed-off-by: Eduard Vintilă <eduard.vintila47@gmail.com>
+Signed-off-by: Salar Samani <soltanisamani@gmail.com>
 ---
  newlib/libc/include/sys/_types.h | 2 ++
  1 file changed, 2 insertions(+)
 
 diff --git a/newlib/libc/include/sys/_types.h b/newlib/libc/include/sys/_types.h
-index 72e1dc1..a0bf7ae 100644
+index d1112d5..fae30a3 100644
 --- a/newlib/libc/include/sys/_types.h
 +++ b/newlib/libc/include/sys/_types.h
-@@ -201,10 +201,12 @@ typedef	_TIMER_T_	__timer_t;
+@@ -203,10 +203,12 @@ typedef	_TIMER_T_	__timer_t;
  
  #ifndef __machine_sa_family_t_defined
  typedef	__uint8_t	__sa_family_t;
@@ -27,7 +24,7 @@ index 72e1dc1..a0bf7ae 100644
 +#define __machine_socklen_t_defined
  #endif
  
- typedef	unsigned short	__nlink_t;
+ typedef	int		__nl_item;
 -- 
-2.38.1
+2.43.0
 

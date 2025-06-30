@@ -1,0 +1,25 @@
+From 1967cc797ce579cdafaa9803626fdb74a997bc5f Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Sun, 29 Jun 2025 21:06:59 +0200
+Subject: [PATCH 15/25] Fix libc/include/sys/_default_fcntl.h
+
+---
+ newlib/libc/include/sys/_default_fcntl.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/newlib/libc/include/sys/_default_fcntl.h b/newlib/libc/include/sys/_default_fcntl.h
+index 2f32c90..25a2905 100644
+--- a/newlib/libc/include/sys/_default_fcntl.h
++++ b/newlib/libc/include/sys/_default_fcntl.h
+@@ -235,7 +235,7 @@ extern int flock (int, int);
+ #endif
+ #if __GNU_VISIBLE
+ #include <sys/time.h>
+-extern int futimesat (int, const char *, const struct timeval [2]);
++extern int futimesat (int, const char *, const struct timeval *);
+ #endif
+ 
+ /* Provide _<systemcall> prototypes for functions provided by some versions
+-- 
+2.43.0
+

@@ -1,0 +1,26 @@
+From b7487f73da9b1684bc9a505a5c3ea02bbde640d3 Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Sun, 22 Jun 2025 04:48:54 +0200
+Subject: [PATCH 03/25] Fix libc/include/sys/unistd.h
+
+Signed-off-by: Salar Samani <soltanisamani@gmail.com>
+---
+ newlib/libc/include/sys/unistd.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/newlib/libc/include/sys/unistd.h b/newlib/libc/include/sys/unistd.h
+index 13b0c16..829db43 100644
+--- a/newlib/libc/include/sys/unistd.h
++++ b/newlib/libc/include/sys/unistd.h
+@@ -200,7 +200,7 @@ int     seteuid (uid_t __uid);
+ #endif
+ int     setgid (gid_t __gid);
+ #if __BSD_VISIBLE
+-int	setgroups (int ngroups, const gid_t *grouplist);
++int	setgroups (size_t ngroups, const gid_t *grouplist);
+ #endif
+ #if __BSD_VISIBLE || (__XSI_VISIBLE && __XSI_VISIBLE < 500)
+ int	sethostname (const char *, size_t);
+-- 
+2.43.0
+

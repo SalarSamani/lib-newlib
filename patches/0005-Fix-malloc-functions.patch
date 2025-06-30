@@ -1,0 +1,286 @@
+From 73ef5b1abdec1f9ada54a8b97d298b70c01c6844 Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Sun, 22 Jun 2025 07:00:51 +0200
+Subject: [PATCH 05/25] Fix malloc functions
+
+Signed-off-by: Salar Samani <soltanisamani@gmail.com>
+---
+ newlib/libc/include/malloc.h       | 61 +++++++++++++++++++++++++++
+ newlib/libc/include/stdlib.h       | 68 +++++++++++++++++++++++++++++-
+ newlib/libc/stdlib/__atexit.c      |  6 +++
+ newlib/libc/stdlib/__call_atexit.c |  6 +++
+ 4 files changed, 140 insertions(+), 1 deletion(-)
+
+diff --git a/newlib/libc/include/malloc.h b/newlib/libc/include/malloc.h
+index 308e4a4..e8937fa 100644
+--- a/newlib/libc/include/malloc.h
++++ b/newlib/libc/include/malloc.h
+@@ -12,6 +12,13 @@
+ /* include any machine-specific extensions */
+ #include <machine/malloc.h>
+ 
++#ifdef __Unikraft__
++#include <uk/config.h>
++#if CONFIG_LIBUKALLOC_IFSTATS_PERLIB
++#include <uk/alloc.h>
++#endif
++#endif
++
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
+@@ -34,7 +41,17 @@ struct mallinfo {
+ 
+ /* The routines.  */
+ 
++#if CONFIG_LIBUKALLOC_IFSTATS_PERLIB
++#ifndef __UK_HAVE_MALLOC__
++#define __UK_HAVE_MALLOC__
++static inline void *malloc(size_t size)
++{
++	return uk_malloc(uk_alloc_get_default(), size);
++}
++#else /* __UK_HAVE_MALLOC__ */
+ extern void *malloc (size_t);
++#endif /*CONFIG_LIBUKALLOC_IFSTATS_PERLIB */
++
+ #ifdef __CYGWIN__
+ #undef _malloc_r
+ #define _malloc_r(r, s) malloc (s)
+@@ -42,7 +59,18 @@ extern void *malloc (size_t);
+ extern void *_malloc_r (struct _reent *, size_t);
+ #endif
+ 
++#if CONFIG_LIBUKALLOC_IFSTATS_PERLIB
++#ifndef __UK_HAVE_FREE__
++#define __UK_HAVE_FREE__
++static inline void free(void *ptr)
++{
++	return uk_free(uk_alloc_get_default(), ptr);
++}
++#endif /* __UK_HAVE_FREE__ */
++#else
+ extern void free (void *);
++#endif /*CONFIG_LIBUKALLOC_IFSTATS_PERLIB */
++
+ #ifdef __CYGWIN__
+ #undef _free_r
+ #define _free_r(r, p) free (p)
+@@ -50,7 +78,18 @@ extern void free (void *);
+ extern void _free_r (struct _reent *, void *);
+ #endif
+ 
++#if CONFIG_LIBUKALLOC_IFSTATS_PERLIB
++#ifndef __UK_HAVE_REALLOC__
++#define __UK_HAVE_REALLOC__
++static inline void *realloc(void *ptr, size_t size)
++{
++	return uk_realloc(uk_alloc_get_default(), ptr, size);
++}
++#endif /* __UK_HAVE_REALLOC__ */
++#else
+ extern void *realloc (void *, size_t);
++#endif /*CONFIG_LIBUKALLOC_IFSTATS_PERLIB */
++
+ #ifdef __CYGWIN__
+ #undef _realloc_r
+ #define _realloc_r(r, p, s) realloc (p, s)
+@@ -58,7 +97,18 @@ extern void *realloc (void *, size_t);
+ extern void *_realloc_r (struct _reent *, void *, size_t);
+ #endif
+ 
++#if CONFIG_LIBUKALLOC_IFSTATS_PERLIB
++#ifndef __UK_HAVE_CALLOC__
++#define __UK_HAVE_CALLOC__
++static inline void *calloc(size_t nmemb, size_t size)
++{
++	return uk_calloc(uk_alloc_get_default(), nmemb, size);
++}
++#endif /* __UK_HAVE_CALLOC__ */
++#else
+ extern void *calloc (size_t, size_t);
++#endif
++
+ #ifdef __CYGWIN__
+ #undef _calloc_r
+ #define _calloc_r(r, s1, s2) calloc (s1, s2);
+@@ -66,7 +116,18 @@ extern void *calloc (size_t, size_t);
+ extern void *_calloc_r (struct _reent *, size_t, size_t);
+ #endif
+ 
++#if CONFIG_LIBUKALLOC_IFSTATS_PERLIB
++#ifndef __UK_HAVE_MEMALIGN__
++#define __UK_HAVE_MEMALIGN__
++static inline void *memalign(size_t align, size_t size)
++{
++	return uk_memalign(uk_alloc_get_default(), align, size);
++}
++#endif /* __UK_HAVE_MEMALIGN__ */
++#else
+ extern void *memalign (size_t, size_t);
++#endif /*CONFIG_LIBUKALLOC_IFSTATS_PERLIB */
++
+ #ifdef __CYGWIN__
+ #undef _memalign_r
+ #define _memalign_r(r, s1, s2) memalign (s1, s2);
+diff --git a/newlib/libc/include/stdlib.h b/newlib/libc/include/stdlib.h
+index 0690a03..68c79e9 100644
+--- a/newlib/libc/include/stdlib.h
++++ b/newlib/libc/include/stdlib.h
+@@ -30,6 +30,13 @@
+ #include <sys/_locale.h>
+ #endif
+ 
++#ifdef __Unikraft__
++#include <uk/config.h>
++#if CONFIG_LIBUKALLOC_IFSTATS_PERLIB
++#include <uk/alloc.h>
++#endif /*CONFIG_LIBUKALLOC_IFSTATS_PERLIB */
++#endif /*__Unikraft__ */
++
+ _BEGIN_STD_C
+ 
+ typedef struct 
+@@ -87,11 +94,35 @@ void *	bsearch (const void *__key,
+ 		       size_t __nmemb,
+ 		       size_t __size,
+ 		       __compar_fn_t _compar);
++
++#if CONFIG_LIBUKALLOC_IFSTATS_PERLIB
++#ifndef __UK_HAVE_CALLOC__
++#define __UK_HAVE_CALLOC__
++static inline void *calloc(size_t nmemb, size_t size)
++{
++	return uk_calloc(uk_alloc_get_default(), nmemb, size);
++}
++#endif /* __UK_HAVE_CALLOC__ */
++#else /*CONFIG_LIBUKALLOC_IFSTATS_PERLIB */
+ void	*calloc(size_t, size_t) __malloc_like __result_use_check
+ 	     __alloc_size2(1, 2) _NOTHROW;
++#endif /*CONFIG_LIBUKALLOC_IFSTATS_PERLIB */
++
+ div_t	div (int __numer, int __denom);
+ void	exit (int __status) _ATTRIBUTE ((__noreturn__));
++
++#if CONFIG_LIBUKALLOC_IFSTATS_PERLIB
++#ifndef __UK_HAVE_FREE__
++#define __UK_HAVE_FREE__
++static inline void free(void *ptr)
++{
++	return uk_free(uk_alloc_get_default(), ptr);
++}
++#endif /* __UK_HAVE_FREE__ */
++#else /*CONFIG_LIBUKALLOC_IFSTATS_PERLIB */
+ void	free (void *) _NOTHROW;
++#endif /*CONFIG_LIBUKALLOC_IFSTATS_PERLIB */
++
+ char *  getenv (const char *__string);
+ char *	_getenv_r (struct _reent *, const char *__string);
+ #if __GNU_VISIBLE
+@@ -105,7 +136,19 @@ int	getsubopt (char **, char * const *, char **);
+ #endif
+ long	labs (long);
+ ldiv_t	ldiv (long __numer, long __denom);
++
++#if CONFIG_LIBUKALLOC_IFSTATS_PERLIB
++#ifndef __UK_HAVE_MALLOC__
++#define __UK_HAVE_MALLOC__
++static inline void *malloc(size_t size)
++{
++	return uk_malloc(uk_alloc_get_default(), size);
++}
++#endif /* __UK_HAVE_MALLOC__ */
++#else /*CONFIG_LIBUKALLOC_IFSTATS_PERLIB */
+ void	*malloc(size_t) __malloc_like __result_use_check __alloc_size(1) _NOTHROW;
++#endif /*CONFIG_LIBUKALLOC_IFSTATS_PERLIB */
++
+ int	mblen (const char *, size_t);
+ int	_mblen_r (struct _reent *, const char *, size_t, _mbstate_t *);
+ int	mbtowc (wchar_t *__restrict, const char *__restrict, size_t);
+@@ -142,7 +185,19 @@ int	_mkstemps_r (struct _reent *, char *, int);
+ char *	_mktemp_r (struct _reent *, char *) _ATTRIBUTE ((__deprecated__("the use of `mktemp' is dangerous; use `mkstemp' instead")));
+ void	qsort (void *__base, size_t __nmemb, size_t __size, __compar_fn_t _compar);
+ int	rand (void);
++
++#if CONFIG_LIBUKALLOC_IFSTATS_PERLIB
++#ifndef __UK_HAVE_REALLOC__
++#define __UK_HAVE_REALLOC__
++static inline void *realloc(void *ptr, size_t size)
++{
++	return uk_realloc(uk_alloc_get_default(), ptr, size);
++}
++#endif /* __UK_HAVE_REALLOC__ */
++#else /*CONFIG_LIBUKALLOC_IFSTATS_PERLIB */
+ void	*realloc(void *, size_t) __result_use_check __alloc_size(2) _NOTHROW;
++#endif /*CONFIG_LIBUKALLOC_IFSTATS_PERLIB */
++
+ #if __BSD_VISIBLE
+ void	*reallocarray(void *, size_t, size_t) __result_use_check __alloc_size2(2, 3);
+ void	*reallocf(void *, size_t) __result_use_check __alloc_size(2);
+@@ -287,9 +342,20 @@ int	_unsetenv_r (struct _reent *, const char *__string);
+ #endif /* !__CYGWIN__ */
+ 
+ #if __POSIX_VISIBLE >= 200112
++#if CONFIG_LIBUKALLOC_IFSTATS_PERLIB
++#ifndef __UK_HAVE_POSIX_MEMALIGN__
++#define __UK_HAVE_POSIX_MEMALIGN__
++static inline int posix_memalign(void **memptr, size_t align, size_t size)
++{
++	return uk_posix_memalign(uk_alloc_get_default(),
++				 memptr, align, size);
++}
++#endif /* __UK_HAVE_POSIX_MEMALIGN__ */
++#else /*CONFIG_LIBUKALLOC_IFSTATS_PERLIB */
+ int	posix_memalign (void **, size_t, size_t) __nonnull((1))
+ 	    __result_use_check;
+-#endif
++#endif /*CONFIG_LIBUKALLOC_IFSTATS_PERLIB */
++#endif /*__POSIX_VISIBLE >= 200112 */
+ 
+ char *	_dtoa_r (struct _reent *, double, int, int, int *, int*, char**);
+ #ifndef __CYGWIN__
+diff --git a/newlib/libc/stdlib/__atexit.c b/newlib/libc/stdlib/__atexit.c
+index e59f04c..350b4aa 100644
+--- a/newlib/libc/stdlib/__atexit.c
++++ b/newlib/libc/stdlib/__atexit.c
+@@ -38,10 +38,16 @@
+ #include <sys/lock.h>
+ #include "atexit.h"
+ 
++#ifdef __Unikraft__
++#include <uk/config.h>
++#endif
++
+ /* Make this a weak reference to avoid pulling in malloc.  */
++#if !CONFIG_LIBUKALLOC_IFSTATS_PERLIB
+ #ifndef MALLOC_PROVIDED
+ void * malloc(size_t) _ATTRIBUTE((__weak__));
+ #endif
++#endif
+ 
+ #ifdef _LITE_EXIT
+ /* As __call_exitprocs is weak reference in lite exit, make a
+diff --git a/newlib/libc/stdlib/__call_atexit.c b/newlib/libc/stdlib/__call_atexit.c
+index 7104403..719a35f 100644
+--- a/newlib/libc/stdlib/__call_atexit.c
++++ b/newlib/libc/stdlib/__call_atexit.c
+@@ -8,10 +8,16 @@
+ #include <sys/lock.h>
+ #include "atexit.h"
+ 
++#ifdef __Unikraft__
++#include <uk/config.h>
++#endif
++
+ /* Make this a weak reference to avoid pulling in free.  */
++#if !CONFIG_LIBUKALLOC_IFSTATS_PERLIB
+ #ifndef MALLOC_PROVIDED
+ void free(void *) _ATTRIBUTE((__weak__));
+ #endif
++#endif
+ 
+ #ifndef __SINGLE_THREAD__
+ __LOCK_INIT_RECURSIVE(, __atexit_recursive_mutex);
+-- 
+2.43.0
+

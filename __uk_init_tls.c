@@ -47,7 +47,7 @@ struct _reent *__getreent(void)
 	if (reent && *reent)
 		return *reent;
 
-	return _impure_ptr;
+	return (struct _reent *)0;// _impure_ptr;
 }
 
 int uk_thread_uktcb_init(struct uk_thread *thread, void *tcb)
@@ -71,20 +71,20 @@ void uk_thread_uktcb_fini(struct uk_thread *thread, void *tcb)
  */
 void ukarch_tls_tcb_init(void *tcb)
 {
-	struct _reent **reent = (struct _reent **)tcb;
+	// struct _reent **reent = (struct _reent **)tcb;
 
-	uk_pr_info("ukarch_tls_tcb_init tcb %p\n", tcb);
+	// uk_pr_info("ukarch_tls_tcb_init tcb %p\n", tcb);
 
-	UK_ASSERT(reent);
+	// UK_ASSERT(reent);
 
-	*reent = uk_memalign(
-	    uk_alloc_get_default(),
-	    __PAGE_SIZE,
-	    sizeof(struct _reent));
+	// *reent = uk_memalign(
+	//     uk_alloc_get_default(),
+	//     __PAGE_SIZE,
+	//     sizeof(struct _reent));
 
-	UK_ASSERT(*reent);
+	// UK_ASSERT(*reent);
 
-	_REENT_INIT_PTR(*reent);
+	// _REENT_INIT_PTR(*reent);
 
 #if 0
 	/* TODO initialize basic signal handling */

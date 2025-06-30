@@ -1,0 +1,34 @@
+From 8d7b14be2f508259803419e588905270cee6aeb2 Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Sun, 29 Jun 2025 23:38:51 +0200
+Subject: [PATCH 16/25] Fix libc/include/malloc.h
+
+---
+ newlib/libc/include/malloc.h | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/newlib/libc/include/malloc.h b/newlib/libc/include/malloc.h
+index e8937fa..694748d 100644
+--- a/newlib/libc/include/malloc.h
++++ b/newlib/libc/include/malloc.h
+@@ -48,7 +48,8 @@ static inline void *malloc(size_t size)
+ {
+ 	return uk_malloc(uk_alloc_get_default(), size);
+ }
+-#else /* __UK_HAVE_MALLOC__ */
++#endif /*__UK_HAVE_MALLOC__ */
++#else /* CONFIG_LIBUKALLOC_IFSTATS_PERLIB */
+ extern void *malloc (size_t);
+ #endif /*CONFIG_LIBUKALLOC_IFSTATS_PERLIB */
+ 
+@@ -232,6 +233,6 @@ extern void cfree (void *);
+ #endif
+ 
+ #else /* _INCLUDE_MALLOC_H_ */
+-#include_next <malloc.h>
++// #include_next <malloc.h>
+ 
+ #endif /* _INCLUDE_MALLOC_H_ */
+-- 
+2.43.0
+

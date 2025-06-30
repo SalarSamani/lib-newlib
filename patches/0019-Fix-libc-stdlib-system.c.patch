@@ -1,0 +1,33 @@
+From d50c5e7dc6e2b1d19254ece79643b2525b1680fd Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Mon, 30 Jun 2025 04:56:45 +0200
+Subject: [PATCH 19/25] Fix libc/stdlib/system.c
+
+---
+ newlib/libc/stdlib/system.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/newlib/libc/stdlib/system.c b/newlib/libc/stdlib/system.c
+index f30b7df..5d79bcd 100644
+--- a/newlib/libc/stdlib/system.c
++++ b/newlib/libc/stdlib/system.c
+@@ -91,11 +91,11 @@ _system_r (struct _reent *ptr,
+ 
+ #ifndef _REENT_ONLY
+ 
+-int
+-system (const char *s)
+-{
+-  return _system_r (_REENT, s);
+-}
++// int
++// system (const char *s)
++// {
++//   return _system_r (_REENT, s);
++// }
+ 
+ #endif
+ 
+-- 
+2.43.0
+

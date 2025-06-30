@@ -1,0 +1,24 @@
+From b1b66a305efae6310f662b17db739450d1e15284 Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Mon, 30 Jun 2025 01:31:53 +0200
+Subject: [PATCH 18/25] Fix libc/stdlib/_mallocr.c
+
+---
+ newlib/libc/stdlib/_mallocr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/newlib/libc/stdlib/_mallocr.c b/newlib/libc/stdlib/_mallocr.c
+index 56968cb..f1d6f37 100644
+--- a/newlib/libc/stdlib/_mallocr.c
++++ b/newlib/libc/stdlib/_mallocr.c
+@@ -1,6 +1,6 @@
+ #include <newlib.h>
+ #ifdef MALLOC_PROVIDED
+-int _dummy_mallocr = 1;
++static int _dummy_mallocr = 1;
+ #elif defined(_NANO_MALLOC)
+ # include "nano-mallocr.c"
+ #else
+-- 
+2.43.0
+

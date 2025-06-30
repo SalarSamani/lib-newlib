@@ -1,0 +1,48 @@
+From 4f54fb7b7f437dbaca9a59175a8a21727f4966b5 Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Sun, 22 Jun 2025 07:31:42 +0200
+Subject: [PATCH 10/25] Fix libc/include/sys/_default_fcntl.h
+
+Signed-off-by: Salar Samani <soltanisamani@gmail.com>
+---
+ newlib/libc/include/sys/_default_fcntl.h | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/newlib/libc/include/sys/_default_fcntl.h b/newlib/libc/include/sys/_default_fcntl.h
+index 148e97d..2e72389 100644
+--- a/newlib/libc/include/sys/_default_fcntl.h
++++ b/newlib/libc/include/sys/_default_fcntl.h
+@@ -58,6 +58,16 @@ extern "C" {
+ #define	O_NONBLOCK	_FNONBLOCK
+ #define	O_NOCTTY	_FNOCTTY
+ 
++#ifdef (__Unikraft__)
++#define O_ASYNC      020000
++#define O_DIRECT     040000
++#define O_LARGEFILE       0
++#define O_NOATIME  01000000
++#define O_PATH    010000000
++#define O_TMPFILE 020200000
++#define O_NDELAY O_NONBLOCK
++#endif
++
+ /* POSIX-1.2008 specific flags */
+ #if __POSIX_VISIBLE >= 200809
+ #define	O_CLOEXEC	_FNOINHERIT
+@@ -80,11 +90,13 @@ extern "C" {
+ 
+ /* Linux-specific flags */
+ #if __GNU_VISIBLE
++#ifndef (__Unikraft__)
+ #define O_TMPFILE	_FTMPFILE
+ #define O_NOATIME	_FNOATIME
+ #define O_PATH		_FPATH
+ #endif
+ #endif
++#endif
+ 
+ #if __MISC_VISIBLE
+ 
+-- 
+2.43.0
+

@@ -1,0 +1,48 @@
+From a9be734e5eced8405de8cd1a3764f66a50651487 Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Sun, 29 Jun 2025 20:40:03 +0200
+Subject: [PATCH 13/25] Fix libc/include/sys/_default_fcntl.h
+
+---
+ newlib/libc/include/sys/_default_fcntl.h | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/newlib/libc/include/sys/_default_fcntl.h b/newlib/libc/include/sys/_default_fcntl.h
+index 9434152..2f32c90 100644
+--- a/newlib/libc/include/sys/_default_fcntl.h
++++ b/newlib/libc/include/sys/_default_fcntl.h
+@@ -58,11 +58,11 @@ extern "C" {
+ #define	O_NONBLOCK	_FNONBLOCK
+ #define	O_NOCTTY	_FNOCTTY
+ 
+-#ifdef (__Unikraft__)
+-#define O_ASYNC      020000
+-#define O_DIRECT     040000
++#ifdef __Unikraft__
++// #define O_ASYNC      020000
++// #define O_DIRECT     040000
+ #define O_LARGEFILE       0
+-#define O_NOATIME  01000000
++// #define O_NOATIME  01000000
+ #define O_PATH    010000000
+ #define O_TMPFILE 020200000
+ #define O_NDELAY O_NONBLOCK
+@@ -78,13 +78,13 @@ extern "C" {
+ #endif
+ 
+ #if __BSD_VISIBLE
+-#define	O_DIRECT	_FDIRECT
++// #define	O_DIRECT	_FDIRECT
+ #endif
+ 
+ // #define O_DSYNC         _FSYNC
+ // #define O_RSYNC         _FSYNC
+ 
+-#if defined (__CYGWIN__)
++#if defined __CYGWIN__
+ #define O_BINARY	_FBINARY
+ #define O_TEXT		_FTEXT
+ 
+-- 
+2.43.0
+

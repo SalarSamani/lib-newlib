@@ -20,7 +20,7 @@ extern "C" {
 
 #include <newlib-internal/shareddefs.h>
 #include <sys/types.h>
-#include <xlocale.h>
+#include <locale.h>
 
 #ifndef CONFIG_LIBNOLIBC
 /* Allow custom definitions */
@@ -125,29 +125,29 @@ time_t timegm(struct tm *);
 #endif
 
 #if __POSIX_VISIBLE
-_VOID      _EXFUN(tzset,	(_VOID));
+void tzset(void);
 #endif
-_VOID      _EXFUN(_tzset_r,	(struct _reent *));
+void _tzset_r(struct _reent *);
 
-typedef struct __tzrule_struct
-{
-  char ch;
-  int m;
-  int n;
-  int d;
-  int s;
-  time_t change;
-  long offset; /* Match type of _timezone. */
-} __tzrule_type;
+// typedef struct __tzrule_struct
+// {
+//   char ch;
+//   int m;
+//   int n;
+//   int d;
+//   int s;
+//   time_t change;
+//   long offset; /* Match type of _timezone. */
+// } __tzrule_type;
 
-typedef struct __tzinfo_struct
-{
-  int __tznorth;
-  int __tzyear;
-  __tzrule_type __tzrule[2];
-} __tzinfo_type;
+// typedef struct __tzinfo_struct
+// {
+//   int __tznorth;
+//   int __tzyear;
+//   __tzrule_type __tzrule[2];
+// } __tzinfo_type;
 
-__tzinfo_type *_EXFUN (__gettzinfo, (_VOID));
+// __tzinfo_type *__gettzinfo(void);
 
 #ifdef HAVE_GETDATE
 #if __XSI_VISIBLE >= 4

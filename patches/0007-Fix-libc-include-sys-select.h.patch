@@ -1,0 +1,26 @@
+From 5fe28898400c734a1c7b727a6d17dccf4f39aaf4 Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Sun, 22 Jun 2025 07:10:45 +0200
+Subject: [PATCH 07/25] Fix libc/include/sys/select.h
+
+Signed-off-by: Salar Samani <soltanisamani@gmail.com>
+---
+ newlib/libc/include/sys/select.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/newlib/libc/include/sys/select.h b/newlib/libc/include/sys/select.h
+index 8926940..8cce8a3 100644
+--- a/newlib/libc/include/sys/select.h
++++ b/newlib/libc/include/sys/select.h
+@@ -33,7 +33,7 @@ typedef	__sigset_t	sigset_t;
+ # elif defined(__rtems__)
+ #  define FD_SETSIZE	256
+ # else
+-#  define FD_SETSIZE	64
++#  define FD_SETSIZE	8192
+ # endif
+ #endif
+ 
+-- 
+2.43.0
+

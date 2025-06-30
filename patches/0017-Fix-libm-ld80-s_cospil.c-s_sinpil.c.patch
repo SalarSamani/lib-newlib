@@ -1,0 +1,39 @@
+From f058328c132c243db3dbf887267793f270142ecb Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Mon, 30 Jun 2025 00:36:09 +0200
+Subject: [PATCH 17/25] Fix /libm/ld80/s_cospil.c&s_sinpil.c
+
+---
+ newlib/libm/ld80/s_cospil.c | 2 +-
+ newlib/libm/ld80/s_sinpil.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/newlib/libm/ld80/s_cospil.c b/newlib/libm/ld80/s_cospil.c
+index 75ec27d..c6bf523 100644
+--- a/newlib/libm/ld80/s_cospil.c
++++ b/newlib/libm/ld80/s_cospil.c
+@@ -44,7 +44,7 @@ pi_lo =-2.7818135228334233e-08;	/* 0xbe5dde97 0x3dcb3b3a */
+ #include "k_cospil.h"
+ #include "k_sinpil.h"
+ 
+-volatile static const double vzero = 0;
++static const volatile double vzero = 0;
+ 
+ long double
+ cospil(long double x)
+diff --git a/newlib/libm/ld80/s_sinpil.c b/newlib/libm/ld80/s_sinpil.c
+index 3390d4d..482b830 100644
+--- a/newlib/libm/ld80/s_sinpil.c
++++ b/newlib/libm/ld80/s_sinpil.c
+@@ -46,7 +46,7 @@ pi_lo_u = LD80C(0x85a308d313198a2e, -33, 1.21542010130123852029e-10L);
+ #include "k_cospil.h"
+ #include "k_sinpil.h"
+ 
+-volatile static const double vzero = 0;
++static const volatile double vzero = 0;
+ 
+ long double
+ sinpil(long double x)
+-- 
+2.43.0
+

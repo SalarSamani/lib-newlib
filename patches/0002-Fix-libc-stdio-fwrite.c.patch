@@ -1,0 +1,32 @@
+From c5fd28d63adf890077e9c0394e42f886f6cf0598 Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Sun, 22 Jun 2025 04:33:56 +0200
+Subject: [PATCH 02/25] Fix libc/stdio/fwrite.c
+
+Signed-off-by: Salar Samani <soltanisamani@gmail.com>
+---
+ newlib/libc/stdio/fwrite.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/newlib/libc/stdio/fwrite.c b/newlib/libc/stdio/fwrite.c
+index 9241ea2..25d4195 100644
+--- a/newlib/libc/stdio/fwrite.c
++++ b/newlib/libc/stdio/fwrite.c
+@@ -158,8 +158,12 @@ _fwrite_r (struct _reent * ptr,
+ 
+   while (i < n)
+     {
+-      if (__sputc_r (ptr, p[i], fp) == EOF)
+-	break;
++      if (__sputc_r (ptr, p[i], fp) == EOF) {
++        if (p[i] == '\n') {
++          i++;
++        }
++        break;
++      }
+ 
+       i++;
+     }
+-- 
+2.43.0
+

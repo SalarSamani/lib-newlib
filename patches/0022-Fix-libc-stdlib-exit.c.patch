@@ -1,0 +1,48 @@
+From 2cf52c1e486ed5c6c295f9986dd087917b4c0481 Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Mon, 30 Jun 2025 05:00:13 +0200
+Subject: [PATCH 22/25] Fix libc/stdlib/exit.c
+
+---
+ newlib/libc/stdlib/exit.c | 26 +++++++++++++-------------
+ 1 file changed, 13 insertions(+), 13 deletions(-)
+
+diff --git a/newlib/libc/stdlib/exit.c b/newlib/libc/stdlib/exit.c
+index 9b7bd51..9ba6264 100644
+--- a/newlib/libc/stdlib/exit.c
++++ b/newlib/libc/stdlib/exit.c
+@@ -49,18 +49,18 @@ Supporting OS subroutines required: <<_exit>>.
+  * Exit, flushing stdio buffers if necessary.
+  */
+ 
+-void
+-exit (int code)
+-{
+-#ifdef _LITE_EXIT
+-  /* Refer to comments in __atexit.c for more details of lite exit.  */
+-  void __call_exitprocs (int, void *) __attribute__((weak));
+-  if (__call_exitprocs)
+-#endif
+-    __call_exitprocs (code, NULL);
++// void
++// exit (int code)
++// {
++// #ifdef _LITE_EXIT
++//   /* Refer to comments in __atexit.c for more details of lite exit.  */
++//   void __call_exitprocs (int, void *) __attribute__((weak));
++//   if (__call_exitprocs)
++// #endif
++//     __call_exitprocs (code, NULL);
+ 
+-  if (__stdio_exit_handler != NULL)
+-    (*__stdio_exit_handler) ();
++//   if (__stdio_exit_handler != NULL)
++//     (*__stdio_exit_handler) ();
+ 
+-  _exit (code);
+-}
++//   _exit (code);
++// }
+-- 
+2.43.0
+

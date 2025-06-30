@@ -1,0 +1,25 @@
+From 93e60af0f41e7be53d5338d3ac2c56b7c1caf517 Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Mon, 30 Jun 2025 05:35:11 +0200
+Subject: [PATCH 24/25] Fix libc/include/sys/unistd.h
+
+---
+ newlib/libc/include/sys/unistd.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/newlib/libc/include/sys/unistd.h b/newlib/libc/include/sys/unistd.h
+index 829db43..c807452 100644
+--- a/newlib/libc/include/sys/unistd.h
++++ b/newlib/libc/include/sys/unistd.h
+@@ -101,7 +101,7 @@ int     fdatasync (int __fd);
+ #if __GNU_VISIBLE
+ char *  get_current_dir_name (void);
+ #endif
+-char *  getcwd (char *__buf, size_t __size);
++// char *  getcwd (char *__buf, size_t __size);
+ #if __BSD_VISIBLE || (__XSI_VISIBLE && __XSI_VISIBLE < 500)
+ int	getdomainname  (char *__name, size_t __len);
+ #endif
+-- 
+2.43.0
+

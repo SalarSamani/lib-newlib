@@ -1,0 +1,26 @@
+From 1d842403f600c63e727daad4d9db60b0dac30e81 Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Sun, 29 Jun 2025 19:51:42 +0200
+Subject: [PATCH 12/25] Fix libc/include/inttypes.h
+
+---
+ newlib/libc/include/inttypes.h | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/newlib/libc/include/inttypes.h b/newlib/libc/include/inttypes.h
+index 417ff22..bf3840a 100644
+--- a/newlib/libc/include/inttypes.h
++++ b/newlib/libc/include/inttypes.h
+@@ -25,7 +25,9 @@
+ #include <sys/_locale.h>
+ #endif
+ 
++#ifndef __STRINGIFY
+ #define __STRINGIFY(a) #a
++#endif
+ 
+ /* 8-bit types */
+ #define __PRI8(x) __INT8 __STRINGIFY(x)
+-- 
+2.43.0
+

@@ -1,0 +1,25 @@
+From a9729d0a725cc095ef9120caa91d31d3cbdce358 Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Mon, 30 Jun 2025 06:17:20 +0200
+Subject: [PATCH 25/25] Fix libc/include/malloc.h
+
+---
+ newlib/libc/include/malloc.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/newlib/libc/include/malloc.h b/newlib/libc/include/malloc.h
+index 694748d..2a27156 100644
+--- a/newlib/libc/include/malloc.h
++++ b/newlib/libc/include/malloc.h
+@@ -129,7 +129,7 @@ static inline void *memalign(size_t align, size_t size)
+ extern void *memalign (size_t, size_t);
+ #endif /*CONFIG_LIBUKALLOC_IFSTATS_PERLIB */
+ 
+-#ifdef __CYGWIN__
++#if defined(__CYGWIN__) || defined(__Unikraft__)
+ #undef _memalign_r
+ #define _memalign_r(r, s1, s2) memalign (s1, s2);
+ #else
+-- 
+2.43.0
+

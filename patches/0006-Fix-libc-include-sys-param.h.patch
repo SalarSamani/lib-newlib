@@ -1,0 +1,39 @@
+From 6cd9938d7818b8b5a2d91491c881f89e695f9bd3 Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Sun, 22 Jun 2025 07:08:04 +0200
+Subject: [PATCH 06/25] Fix libc/include/sys/param.h
+
+Signed-off-by: Salar Samani <soltanisamani@gmail.com>
+---
+ newlib/libc/include/sys/param.h | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/newlib/libc/include/sys/param.h b/newlib/libc/include/sys/param.h
+index 9a6f115..6460660 100644
+--- a/newlib/libc/include/sys/param.h
++++ b/newlib/libc/include/sys/param.h
+@@ -9,6 +9,7 @@
+ #include <sys/syslimits.h>
+ #include <machine/endian.h>
+ #include <machine/param.h>
++#include <limits.h>
+ 
+ #ifndef NBBY
+ # define NBBY 8		/* number of bits in a byte */
+@@ -25,8 +26,13 @@
+ 
+ #define MAXPATHLEN PATH_MAX
+ 
++#ifndef MAX
+ #define MAX(a,b) ((a) > (b) ? (a) : (b))
++#endif
++
++#ifndef MIN
+ #define MIN(a,b) ((a) < (b) ? (a) : (b))
++#endif
+ 
+ #ifndef howmany
+ #define    howmany(x, y)   (((x)+((y)-1))/(y))
+-- 
+2.43.0
+
