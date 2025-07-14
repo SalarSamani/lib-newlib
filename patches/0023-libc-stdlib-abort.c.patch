@@ -1,7 +1,7 @@
 From 4fabbb0a6561a556c4c26938f69436ca28cef371 Mon Sep 17 00:00:00 2001
 From: Salar Samani <soltanisamani@gmail.com>
 Date: Mon, 30 Jun 2025 05:06:06 +0200
-Subject: [PATCH 23/25] libc/stdlib/abort.c
+Subject: [PATCH 23/29] libc/stdlib/abort.c
 
 ---
  newlib/libc/stdlib/abort.c | 26 +++++++++++++-------------

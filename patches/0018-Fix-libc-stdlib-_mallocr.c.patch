@@ -1,7 +1,7 @@
 From b1b66a305efae6310f662b17db739450d1e15284 Mon Sep 17 00:00:00 2001
 From: Salar Samani <soltanisamani@gmail.com>
 Date: Mon, 30 Jun 2025 01:31:53 +0200
-Subject: [PATCH 18/25] Fix libc/stdlib/_mallocr.c
+Subject: [PATCH 18/29] Fix libc/stdlib/_mallocr.c
 
 ---
  newlib/libc/stdlib/_mallocr.c | 2 +-

@@ -1,7 +1,7 @@
 From bc8a41dc99533f47b36095304d718d310f05be9a Mon Sep 17 00:00:00 2001
 From: Salar Samani <soltanisamani@gmail.com>
 Date: Sun, 22 Jun 2025 07:14:04 +0200
-Subject: [PATCH 08/25] Fix libc/include/sys/_types.h
+Subject: [PATCH 08/29] Fix libc/include/sys/_types.h
 
 Signed-off-by: Salar Samani <soltanisamani@gmail.com>
 ---

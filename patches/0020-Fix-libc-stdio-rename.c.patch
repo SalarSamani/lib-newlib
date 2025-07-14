@@ -1,7 +1,7 @@
 From 8ff22e9094549da550d55455bfd0e3958b9b3a45 Mon Sep 17 00:00:00 2001
 From: Salar Samani <soltanisamani@gmail.com>
 Date: Mon, 30 Jun 2025 04:58:05 +0200
-Subject: [PATCH 20/25] Fix libc/stdio/rename.c
+Subject: [PATCH 20/29] Fix libc/stdio/rename.c
 
 ---
  newlib/libc/stdio/rename.c | 12 ++++++------

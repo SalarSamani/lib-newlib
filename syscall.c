@@ -85,6 +85,21 @@ int raise(int sig) {
     return -1;
 }
 
+static void dummy_handler(int sig) {
+    // Do nothing
+        while (1)
+        {
+                /* code */
+        }
+
+}
+
+void (*signal(int signum, void (*handler)(int)))(int) {
+    // Normally you'd store the handler or install it;
+    // this stub just returns a dummy handler
+    return dummy_handler;
+}
+
 // int execve(const char *pathname, char *const argv[], char *const envp[]) {
 //     errno = ENOSYS;  // Function not implemented
 //     return -1;

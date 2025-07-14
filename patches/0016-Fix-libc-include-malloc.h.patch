@@ -1,7 +1,7 @@
 From 8d7b14be2f508259803419e588905270cee6aeb2 Mon Sep 17 00:00:00 2001
 From: Salar Samani <soltanisamani@gmail.com>
 Date: Sun, 29 Jun 2025 23:38:51 +0200
-Subject: [PATCH 16/25] Fix libc/include/malloc.h
+Subject: [PATCH 16/29] Fix libc/include/malloc.h
 
 ---
  newlib/libc/include/malloc.h | 5 +++--

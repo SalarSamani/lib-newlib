@@ -1,7 +1,7 @@
 From f058328c132c243db3dbf887267793f270142ecb Mon Sep 17 00:00:00 2001
 From: Salar Samani <soltanisamani@gmail.com>
 Date: Mon, 30 Jun 2025 00:36:09 +0200
-Subject: [PATCH 17/25] Fix /libm/ld80/s_cospil.c&s_sinpil.c
+Subject: [PATCH 17/29] Fix /libm/ld80/s_cospil.c&s_sinpil.c
 
 ---
  newlib/libm/ld80/s_cospil.c | 2 +-

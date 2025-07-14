@@ -1,7 +1,7 @@
 From 6cd9938d7818b8b5a2d91491c881f89e695f9bd3 Mon Sep 17 00:00:00 2001
 From: Salar Samani <soltanisamani@gmail.com>
 Date: Sun, 22 Jun 2025 07:08:04 +0200
-Subject: [PATCH 06/25] Fix libc/include/sys/param.h
+Subject: [PATCH 06/29] Fix libc/include/sys/param.h
 
 Signed-off-by: Salar Samani <soltanisamani@gmail.com>
 ---

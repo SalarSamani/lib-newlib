@@ -1,0 +1,25 @@
+From 436563c1c4de7422712fdd59a783808ea25fbe1d Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Mon, 14 Jul 2025 03:10:20 +0200
+Subject: [PATCH 29/29] Fix libc/stdlib/__atexit.c
+
+---
+ newlib/libc/stdlib/__atexit.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/newlib/libc/stdlib/__atexit.c b/newlib/libc/stdlib/__atexit.c
+index 350b4aa..b0350e7 100644
+--- a/newlib/libc/stdlib/__atexit.c
++++ b/newlib/libc/stdlib/__atexit.c
+@@ -128,7 +128,7 @@ __register_exitproc (int type,
+ #endif
+ 	  return -1;
+ #else
+-	  if (malloc)
++	  // if (malloc)
+ 	    args = malloc (sizeof * p->_on_exit_args_ptr);
+ 
+ 	  if (args == NULL)
+-- 
+2.43.0
+

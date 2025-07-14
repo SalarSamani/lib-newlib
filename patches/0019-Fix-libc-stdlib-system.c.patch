@@ -1,7 +1,7 @@
 From d50c5e7dc6e2b1d19254ece79643b2525b1680fd Mon Sep 17 00:00:00 2001
 From: Salar Samani <soltanisamani@gmail.com>
 Date: Mon, 30 Jun 2025 04:56:45 +0200
-Subject: [PATCH 19/25] Fix libc/stdlib/system.c
+Subject: [PATCH 19/29] Fix libc/stdlib/system.c
 
 ---
  newlib/libc/stdlib/system.c | 10 +++++-----

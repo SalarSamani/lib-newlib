@@ -1,0 +1,25 @@
+From 05f0dfc8d7429b385871558f58933e304866ca2d Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Mon, 14 Jul 2025 02:46:51 +0200
+Subject: [PATCH 27/29] Fix libc/include/sys/stat.h
+
+---
+ newlib/libc/include/sys/stat.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/newlib/libc/include/sys/stat.h b/newlib/libc/include/sys/stat.h
+index b4e27f2..96d6464 100644
+--- a/newlib/libc/include/sys/stat.h
++++ b/newlib/libc/include/sys/stat.h
+@@ -142,7 +142,7 @@ int	mkfifo (const char *__path, mode_t __mode );
+ int	stat (const char *__restrict __path, struct stat *__restrict __sbuf );
+ mode_t	umask (mode_t __mask );
+ 
+-#if defined (__SPU__) || defined(__rtems__) || defined(__CYGWIN__)
++#if defined (__SPU__) || defined(__rtems__) || defined(__CYGWIN__) || defined(__Unikraft__)
+ int	lstat (const char *__restrict __path, struct stat *__restrict __buf );
+ int	mknod (const char *__path, mode_t __mode, dev_t __dev );
+ #endif
+-- 
+2.43.0
+

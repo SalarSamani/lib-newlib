@@ -1,7 +1,7 @@
 From 89b29e617179b1093e99ca9e1c40665873ce380f Mon Sep 17 00:00:00 2001
 From: Salar Samani <soltanisamani@gmail.com>
 Date: Sun, 22 Jun 2025 07:16:18 +0200
-Subject: [PATCH 09/25] Fix libc/include/sys/_pthreadtypes.h
+Subject: [PATCH 09/29] Fix libc/include/sys/_pthreadtypes.h
 
 Signed-off-by: Salar Samani <soltanisamani@gmail.com>
 ---

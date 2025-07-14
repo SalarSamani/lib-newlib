@@ -1,7 +1,7 @@
 From 94b7c12d08be66d9455bae510427704d9b1f0288 Mon Sep 17 00:00:00 2001
 From: Salar Samani <soltanisamani@gmail.com>
 Date: Sun, 22 Jun 2025 05:31:10 +0200
-Subject: [PATCH 04/25] Fix libc/include/malloc.h
+Subject: [PATCH 04/29] Fix libc/include/malloc.h
 
 Signed-off-by: Salar Samani <soltanisamani@gmail.com>
 ---

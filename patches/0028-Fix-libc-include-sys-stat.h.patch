@@ -1,0 +1,29 @@
+From 5c67ace638143ded86266384b5a9ad8a92e860f4 Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Mon, 14 Jul 2025 03:04:38 +0200
+Subject: [PATCH 28/29] Fix libc/include/sys/stat.h
+
+---
+ newlib/libc/include/sys/stat.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/newlib/libc/include/sys/stat.h b/newlib/libc/include/sys/stat.h
+index 96d6464..e7af3c5 100644
+--- a/newlib/libc/include/sys/stat.h
++++ b/newlib/libc/include/sys/stat.h
+@@ -153,10 +153,10 @@ int	fstatat (int, const char *__restrict , struct stat *__restrict, int);
+ int	mkdirat (int, const char *, mode_t);
+ int	mkfifoat (int, const char *, mode_t);
+ int	mknodat (int, const char *, mode_t, dev_t);
+-int	utimensat (int, const char *, const struct timespec [2], int);
++int	utimensat (int, const char *, const struct timespec *, int);
+ #endif
+ #if __POSIX_VISIBLE >= 200809
+-int	futimens (int, const struct timespec [2]);
++int	futimens (int, const struct timespec *);
+ #endif
+ 
+ /* Provide prototypes for most of the _<systemcall> names that are
+-- 
+2.43.0
+

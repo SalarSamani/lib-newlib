@@ -1,7 +1,7 @@
 From 3f4d65f87af871a14d0d7aa49063eab9f21807ee Mon Sep 17 00:00:00 2001
 From: Salar Samani <soltanisamani@gmail.com>
 Date: Sun, 29 Jun 2025 19:45:47 +0200
-Subject: [PATCH 11/25] Fix libc/include/sys/_default_fcntl.h
+Subject: [PATCH 11/29] Fix libc/include/sys/_default_fcntl.h
 
 ---
  newlib/libc/include/sys/_default_fcntl.h | 16 ++++++++--------

@@ -1,7 +1,7 @@
 From 2cf52c1e486ed5c6c295f9986dd087917b4c0481 Mon Sep 17 00:00:00 2001
 From: Salar Samani <soltanisamani@gmail.com>
 Date: Mon, 30 Jun 2025 05:00:13 +0200
-Subject: [PATCH 22/25] Fix libc/stdlib/exit.c
+Subject: [PATCH 22/29] Fix libc/stdlib/exit.c
 
 ---
  newlib/libc/stdlib/exit.c | 26 +++++++++++++-------------

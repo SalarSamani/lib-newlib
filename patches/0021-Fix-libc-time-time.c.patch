@@ -1,7 +1,7 @@
 From 8f4010d4ffc3f1b6bc8ec4d19528ec2f7eeca48a Mon Sep 17 00:00:00 2001
 From: Salar Samani <soltanisamani@gmail.com>
 Date: Mon, 30 Jun 2025 04:59:08 +0200
-Subject: [PATCH 21/25] Fix libc/time/time.c
+Subject: [PATCH 21/29] Fix libc/time/time.c
 
 ---
  newlib/libc/time/time.c | 22 +++++++++++-----------
