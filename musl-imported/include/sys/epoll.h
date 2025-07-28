@@ -7,6 +7,7 @@ extern "C" {
 
 #include <stdint.h>
 #include <sys/types.h>
+#include <fcntl.h>
 
 #define __NEED_sigset_t
 

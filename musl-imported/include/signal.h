@@ -274,8 +274,76 @@ struct sigevent {
 /*
  * Possible values for ss_flags in stack_t below.
  */
-#define	SS_ONSTACK	0x1
-#define	SS_DISABLE	0x2
+
+#define _POSIX_AIO_LISTIO_MAX   2
+#define _POSIX_AIO_MAX          1
+#define _POSIX_ARG_MAX          4096
+#define _POSIX_CHILD_MAX        25
+#define _POSIX_CLOCKRES_MIN     20000000
+#define _POSIX_DELAYTIMER_MAX   32
+#define _POSIX_HOST_NAME_MAX    255
+#define _POSIX_LINK_MAX         8
+#define _POSIX_LOGIN_NAME_MAX   9
+#define _POSIX_MAX_CANON        255
+#define _POSIX_MAX_INPUT        255
+#define _POSIX_MQ_OPEN_MAX      8
+#define _POSIX_MQ_PRIO_MAX      32
+#define _POSIX_NAME_MAX         14
+#define _POSIX_NGROUPS_MAX      8
+#define _POSIX_OPEN_MAX         20
+#define _POSIX_PATH_MAX         256
+#define _POSIX_PIPE_BUF         512
+#define _POSIX_RE_DUP_MAX       255
+#define _POSIX_RTSIG_MAX        8
+#define _POSIX_SEM_NSEMS_MAX    256
+#define _POSIX_SEM_VALUE_MAX    32767
+#define _POSIX_SIGQUEUE_MAX     32
+#define _POSIX_SSIZE_MAX        32767
+#define _POSIX_STREAM_MAX       8
+#define _POSIX_SS_REPL_MAX      4
+#define _POSIX_SYMLINK_MAX      255
+#define _POSIX_SYMLOOP_MAX      8
+#define _POSIX_THREAD_DESTRUCTOR_ITERATIONS 4
+#define _POSIX_THREAD_KEYS_MAX  128
+#define _POSIX_THREAD_THREADS_MAX 64
+#define _POSIX_TIMER_MAX        32
+#define _POSIX_TRACE_EVENT_NAME_MAX 30
+#define _POSIX_TRACE_NAME_MAX   8
+#define _POSIX_TRACE_SYS_MAX    8
+#define _POSIX_TRACE_USER_EVENT_MAX 32
+#define _POSIX_TTY_NAME_MAX     9
+#define _POSIX_TZNAME_MAX       6
+#define _POSIX2_BC_BASE_MAX     99
+#define _POSIX2_BC_DIM_MAX      2048
+#define _POSIX2_BC_SCALE_MAX    99
+#define _POSIX2_BC_STRING_MAX   1000
+#define _POSIX2_CHARCLASS_NAME_MAX 14
+#define _POSIX2_COLL_WEIGHTS_MAX 2
+#define _POSIX2_EXPR_NEST_MAX   32
+#define _POSIX2_LINE_MAX        2048
+#define _POSIX2_RE_DUP_MAX      255
+
+#define SIGRTMIN  35
+#define SIGRTMAX  (_NSIG - 1)
+
+#define TRAP_BRKPT 1
+#define TRAP_TRACE 2
+#define TRAP_BRANCH 3
+#define TRAP_HWBKPT 4
+#define TRAP_UNK 5
+#define POLL_IN 1
+#define POLL_OUT 2
+#define POLL_MSG 3
+#define POLL_ERR 4
+#define POLL_PRI 5
+#define POLL_HUP 6
+#define SS_ONSTACK    1
+#define SS_DISABLE    2
+#define SS_AUTODISARM (1U << 31)
+#define SS_FLAG_BITS SS_AUTODISARM
+
+#define MINSIGSTKSZ 2048
+#define SIGSTKSZ 8192
 
 /* TODO: not used - defined just for v8 */
 
