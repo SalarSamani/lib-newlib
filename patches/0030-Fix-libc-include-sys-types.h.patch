@@ -1,0 +1,25 @@
+From c86ebe6f4dfe38778ec4ae343a00cee096b1bc7b Mon Sep 17 00:00:00 2001
+From: Salar Samani <soltanisamani@gmail.com>
+Date: Mon, 28 Jul 2025 07:47:41 +0200
+Subject: [PATCH 30/30] Fix libc/include/sys/types.h
+
+---
+ newlib/libc/include/sys/types.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/newlib/libc/include/sys/types.h b/newlib/libc/include/sys/types.h
+index 5035d54..34e5c14 100644
+--- a/newlib/libc/include/sys/types.h
++++ b/newlib/libc/include/sys/types.h
+@@ -64,7 +64,7 @@ typedef	__uint16_t	in_port_t;
+ typedef	__uintptr_t	u_register_t;
+ #endif /* __BSD_VISIBLE */
+ 
+-#if __MISC_VISIBLE
++#if __MISC_VISIBLE || defined(__Unikraft__)
+ #ifndef _BSDTYPES_DEFINED
+ /* also defined in mingw/gmon.h and in w32api/winsock[2].h */
+ #ifndef __u_char_defined
+-- 
+2.43.0
+
