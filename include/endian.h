@@ -29,9 +29,11 @@
 
 #include <machine/endian.h>
 
+#if (defined CONFIG_ARCH_X86_64)
 #define __LITTLE_ENDIAN 1234
 #define __BIG_ENDIAN 4321
 #define __PDP_ENDIAN 3412
+#endif
 
 #if defined(__GNUC__) && defined(__BYTE_ORDER__)
 #define __BYTE_ORDER __BYTE_ORDER__
