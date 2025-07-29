@@ -1035,18 +1035,7 @@ LIBNEWLIBM_SRCS-y += $(LIBNEWLIBC_ORIGIN)/newlib-4.5.0.20241231/newlib/libm/fenv
 
 
 # Directory: $(LIBNEWLIBC_ORIGIN)/newlib-4.5.0.20241231/newlib/libm/machine/x86_64
-LIBNEWLIBM_SRCS-y += $(LIBNEWLIBC_ORIGIN)/newlib-4.5.0.20241231/newlib/libm/machine/x86_64/feclearexcept.c
-LIBNEWLIBM_SRCS-y += $(LIBNEWLIBC_ORIGIN)/newlib-4.5.0.20241231/newlib/libm/machine/x86_64/fegetenv.c
-LIBNEWLIBM_SRCS-y += $(LIBNEWLIBC_ORIGIN)/newlib-4.5.0.20241231/newlib/libm/machine/x86_64/fegetexceptflag.c
-LIBNEWLIBM_SRCS-y += $(LIBNEWLIBC_ORIGIN)/newlib-4.5.0.20241231/newlib/libm/machine/x86_64/fegetround.c
-LIBNEWLIBM_SRCS-y += $(LIBNEWLIBC_ORIGIN)/newlib-4.5.0.20241231/newlib/libm/machine/x86_64/feholdexcept.c
-LIBNEWLIBM_SRCS-y += $(LIBNEWLIBC_ORIGIN)/newlib-4.5.0.20241231/newlib/libm/machine/x86_64/fenv.c
-LIBNEWLIBM_SRCS-y += $(LIBNEWLIBC_ORIGIN)/newlib-4.5.0.20241231/newlib/libm/machine/x86_64/feraiseexcept.c
-LIBNEWLIBM_SRCS-y += $(LIBNEWLIBC_ORIGIN)/newlib-4.5.0.20241231/newlib/libm/machine/x86_64/fesetenv.c
-LIBNEWLIBM_SRCS-y += $(LIBNEWLIBC_ORIGIN)/newlib-4.5.0.20241231/newlib/libm/machine/x86_64/fesetexceptflag.c
-LIBNEWLIBM_SRCS-y += $(LIBNEWLIBC_ORIGIN)/newlib-4.5.0.20241231/newlib/libm/machine/x86_64/fesetround.c
-LIBNEWLIBM_SRCS-y += $(LIBNEWLIBC_ORIGIN)/newlib-4.5.0.20241231/newlib/libm/machine/x86_64/fetestexcept.c
-LIBNEWLIBM_SRCS-y += $(LIBNEWLIBC_ORIGIN)/newlib-4.5.0.20241231/newlib/libm/machine/x86_64/feupdateenv.c
+
 
 # Directory: $(LIBNEWLIBC_ORIGIN)/newlib-4.5.0.20241231/newlib/libm/math
 LIBNEWLIBM_SRCS-y += $(LIBNEWLIBC_ORIGIN)/newlib-4.5.0.20241231/newlib/libm/math/e_acos.c
