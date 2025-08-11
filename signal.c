@@ -30,23 +30,17 @@ int sigaction(int signum, const struct sigaction *act, struct sigaction *oldact)
     return 0;
 }
 
+#include <signal.h>
 #include <errno.h>
-#include <unistd.h>
+#include <sys/select.h>
 
 int sigsuspend(const sigset_t *mask)
 {
-    if (!mask) { errno = EINVAL; return -1; }
-
-    sigset_t old;
-    if (sigprocmask(SIG_SETMASK, mask, &old) == -1)
-        return -1;
-
-    (void)pause();
-
-    int saved = errno;
-    (void)sigprocmask(SIG_SETMASK, &old, NULL);
-    errno = saved ? saved : EINTR;
-    return -1;
+    if (!mask) {
+        errno = EINVAL; return -1;
+    } else {
+        return 0;
+    }
 }
 
 /*
