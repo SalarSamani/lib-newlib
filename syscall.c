@@ -72,39 +72,5 @@ long syscall(long num __maybe_unused, ...)
 }
 #endif /* CONFIG_LIBSYSCALL_SHIM */
 
-#include <signal.h>
-#include <sys/types.h>
-
-// int execve(const char *pathname, char *const argv[], char *const envp[]) {
-//     errno = ENOSYS;  // Function not implemented
-//     return -1;
-// }
-
-#include <malloc.h>
-
-#include <uk/console.h>
-#include <string.h>
-
-// ssize_t write(int fd, const void *buf, size_t count) {
-    
-//     for (size_t i = 0; i < count; i++) {
-//         char c = ((char *)buf)[i];
-        
-//         uk_console_out(&c, 1);
-//     }
-//     return count;
-// }
-
-// UK_SYSCALL_R_DEFINE(ssize_t, write, int, fd, const void *, buf, size_t, count)
-// {
-    
-//     for (size_t i = 0; i < count; i++) {
-//         char c = ((char *)buf)[i];
-        
-//         uk_console_out(&c, 1);
-//     }
-//     return count;
-// }
-
 void _init(void) {}
 void _fini(void) {}
